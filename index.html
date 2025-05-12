@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jewelry Style Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 2rem; }
+    h1 { text-align: center; }
+    .question { margin-bottom: 2rem; }
+    label { display: block; margin: 0.5rem 0; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; }
+    #result { margin-top: 2rem; padding: 1rem; background: #f0f0f0; border-radius: 8px; display: none; }
+  </style>
+</head>
+<body>
+  <h1>What’s Your Jewelry-Making Style?</h1>
+  <form id="quizForm">
+    <div class="question">
+      <strong>1. What's your favorite metal finish?</strong>
+      <label><input type="radio" name="q1" value="Classic & Chic"> Gold</label>
+      <label><input type="radio" name="q1" value="Vintage Romantic"> Antique Brass / Copper</label>
+      <label><input type="radio" name="q1" value="Bold Statement Maker"> Matte Black</label>
+      <label><input type="radio" name="q1" value="Modern Minimalist"> Silver</label>
+      <label><input type="radio" name="q1" value="Vintage Romantic"> Rose Gold</label>
+      <label><input type="radio" name="q1" value="Boho Dreamer"> Mixed Metals</label>
+    </div>
+
+    <div class="question">
+      <strong>2. Which color palette inspires your designs most?</strong>
+      <label><input type="radio" name="q2" value="Vintage Romantic"> Soft pastels</label>
+      <label><input type="radio" name="q2" value="Bold Statement Maker"> Bold brights</label>
+      <label><input type="radio" name="q2" value="Boho Dreamer"> Earth tones</label>
+      <label><input type="radio" name="q2" value="Modern Minimalist"> Neutrals</label>
+      <label><input type="radio" name="q2" value="Spiritual & Intentional"> Jewel tones</label>
+    </div>
+
+    <div class="question">
+      <strong>3. What best describes your design aesthetic?</strong>
+      <label><input type="radio" name="q3" value="Modern Minimalist"> Minimal & clean</label>
+      <label><input type="radio" name="q3" value="Boho Dreamer"> Layered & free-spirited</label>
+      <label><input type="radio" name="q3" value="Bold Statement Maker"> Statement & loud</label>
+      <label><input type="radio" name="q3" value="Classic & Chic"> Elegant & timeless</label>
+      <label><input type="radio" name="q3" value="Vintage Romantic"> Ethereal & feminine</label>
+      <label><input type="radio" name="q3" value="Spiritual & Intentional"> Symbolic & meaningful</label>
+    </div>
+
+    <div class="question">
+      <strong>4. Which of these pieces would you wear or make?</strong>
+      <label><input type="radio" name="q4" value="Boho Dreamer"> Long layered necklace</label>
+      <label><input type="radio" name="q4" value="Modern Minimalist"> Simple gold chain</label>
+      <label><input type="radio" name="q4" value="Spiritual & Intentional"> Crystal charm bracelet</label>
+      <label><input type="radio" name="q4" value="Bold Statement Maker"> Oversized geometric earrings</label>
+      <label><input type="radio" name="q4" value="Classic & Chic"> Pearl studs</label>
+      <label><input type="radio" name="q4" value="Vintage Romantic"> Filigree locket necklace</label>
+    </div>
+
+    <div class="question">
+      <strong>5. What’s your ideal weekend?</strong>
+      <label><input type="radio" name="q5" value="Boho Dreamer"> Browsing local markets</label>
+      <label><input type="radio" name="q5" value="Spiritual & Intentional"> Yoga, journaling, or meditation</label>
+      <label><input type="radio" name="q5" value="Modern Minimalist"> Art exhibit or boutique hopping</label>
+      <label><input type="radio" name="q5" value="Bold Statement Maker"> Getting dressed up and going out</label>
+      <label><input type="radio" name="q5" value="Vintage Romantic"> Baking or home DIYs</label>
+      <label><input type="radio" name="q5" value="Classic & Chic"> Brunch or a chic dinner</label>
+    </div>
+
+    <div class="question">
+      <strong>6. What materials do you reach for most when creating?</strong>
+      <label><input type="radio" name="q6" value="Boho Dreamer"> Natural stones, wood, feathers</label>
+      <label><input type="radio" name="q6" value="Bold Statement Maker"> Cubic zirconia, shiny chain, enamel</label>
+      <label><input type="radio" name="q6" value="Spiritual & Intentional"> Gemstones, chakra beads</label>
+      <label><input type="radio" name="q6" value="Classic & Chic"> Pearls, dainty chain, clasps</label>
+      <label><input type="radio" name="q6" value="Vintage Romantic"> Filigree, antique-style findings</label>
+      <label><input type="radio" name="q6" value="Modern Minimalist"> Sleek bars, geometric shapes</label>
+    </div>
+
+    <div style="text-align:center;">
+      <button type="submit">Get My Style</button>
+    </div>
+  </form>
+
+  <div id="result">
+    <h2>Your Jewelry-Making Style:</h2>
+    <p id="resultText"></p>
+  </div>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const styles = {};
+      const formData = new FormData(e.target);
+      for (const [_, value] of formData.entries()) {
+        styles[value] = (styles[value] || 0) + 1;
+      }
+
+      let topStyle = '';
+      let maxCount = 0;
+      for (const style in styles) {
+        if (styles[style] > maxCount) {
+          maxCount = styles[style];
+          topStyle = style;
+        }
+      }
+
+      document.getElementById('resultText').textContent = topStyle;
+      document.getElementById('result').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
